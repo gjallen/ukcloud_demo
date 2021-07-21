@@ -1,0 +1,28 @@
+---
+- name: Update packages
+  ansible.builtin.package:
+    name: "*"
+    state: latest
+
+- name: Install RPM Container Tools module
+  ansible.builtin.package:
+    name: '@container-tools:rhel8'
+    state: present
+
+- name: Pull latest Wordpress image
+  remote_user: "{{ podman_user }}"
+  containers.podman.podman_image:
+    name: "{{ wordpress_image }}"
+
+- name: Build Wordpress container
+  remote_user: "{{ podman_user }}"
+  containers.podman.podman_container:
+    name: ukcloud_wordpress
+    image: wordpress
+    ports: 8080:80
+    env:
+      WORDPRESS_DB_HOST="{{ WORDPRESS_DB_HOST }}"
+      WORDPRESS_DB_USER="{{ WORDPRESS_DB_USER }}"
+      WORDPRESS_DB_PASSWORD="{{ WORDPRESS_DB_PASSWORD }}"
+      WORDPRESS_DB_NAME="{{ WORDPRESS_DB_NAME }}"
+    state: started

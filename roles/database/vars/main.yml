@@ -1,0 +1,4 @@
+---
+mysql_root_password: "db99!"
+mysql_user: "wp_db_user1"
+mysql_user_password: "db99!"

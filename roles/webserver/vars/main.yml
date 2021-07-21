@@ -1,0 +1,7 @@
+---
+WORDPRESS_DB_USER: wp_db_user1
+WORDPRESS_DB_PASSWORD: db99!
+WORDPRESS_DB_NAME: wordpress_db
+WORDPRESS_DB_HOST: "192.168.1.12"
+podman_user: guy
+wordpress_image: docker.io/library/wordpress:latest

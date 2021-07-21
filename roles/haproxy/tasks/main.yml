@@ -1,0 +1,57 @@
+---
+- name: Update packages
+  ansible.builtin.package:
+    name: "*"
+    state: latest
+
+- name: Install HAProxy
+  ansible.builtin.package:
+    name: haproxy
+    state: latest
+
+- name: Backup and replace /etc/haproxy/haproxy.cfg
+  ansible.builtin.copy:
+    src: templates/haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  notify:
+    - Restart haproxy
+
+- name: Create haproxy.conf for rsyslog
+  ansible.builtin.copy:
+    src: files/haproxy.conf
+    dest: /etc/rsyslog.d/haproxy.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Restart haproxy
+
+- name: Enable haproxy logging via rsyslog
+  ansible.builtin.replace:
+    path: /etc/rsyslog.conf
+    regexp: '# module(load="imudp")'
+    replace: 'module(load="imudp")'
+
+- name: Enable haproxy logging again
+  ansible.builtin.replace:
+    path: /etc/rsyslog.conf
+    regexp: '# input(type="imudp" port="514") *'
+    replace: 'input(type="imudp" port="514") *'
+  notify:
+    - Restart haproxy
+
+- name: Allow port 8080/tcp through firewall
+  ansible.builtin.firewalld:
+    port: 8080/tcp
+    permanent: yes
+    zone: public
+    state: enabled
+  notify:
+    - Reload firewalld
+
+- name: Set SELinux rule
+  shell: "setsebool -P haproxy_connect_any 1"

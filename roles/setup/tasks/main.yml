@@ -1,0 +1,10 @@
+---
+- name: Update packages
+  ansible.builtin.package:
+    name: '*'
+    state: latest
+
+- include: chrony.yml
+
+
+

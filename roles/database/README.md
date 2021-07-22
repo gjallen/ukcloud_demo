@@ -1,4 +1,4 @@
-Role Name
+Database
 =========
 
 Installs MariaDB and new database for Wordpress.

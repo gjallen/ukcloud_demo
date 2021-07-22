@@ -1,4 +1,4 @@
-Role Name
+HAProxy
 =========
 Installs and configures HAProxy.
 

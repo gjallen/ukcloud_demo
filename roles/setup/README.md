@@ -1,4 +1,4 @@
-Role Name
+Setup
 =========
 
 Updates all packages and installs Chrony with UK-based NTP sources.

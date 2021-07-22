@@ -1,7 +1,7 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Updates all packages and installs Chrony with UK-based NTP sources.
 
 Requirements
 ------------

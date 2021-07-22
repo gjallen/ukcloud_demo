@@ -1,4 +1,4 @@
-Role Name
+Webserver
 =========
 
 Installs Podman and pulls latest Wordpress container configured to connect to remote MariaDB instance.

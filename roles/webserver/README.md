@@ -1,7 +1,7 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs Podman and pulls latest Wordpress container configured to connect to remote MariaDB instance.
 
 Requirements
 ------------

@@ -4,9 +4,9 @@ Interview demo task:
 
 3 RedHat virtual machines:
 
-- Virtual Machine 1 Install RH8 (Dev account), install MariaDB
-- Virtual machine 2 Install RH8 (Dev account), install Docker and a website which uses the database
-- Virtual Machine 3 Install RH8 (Dev account), install HA Proxy to access the website from the HOST Machine
+- VM 1 Install RH8 (Dev account), install MariaDB
+- VM 2 Install RH8 (Dev account), install Docker and a website which uses the database
+- VM 3 Install RH8 (Dev account), install HA Proxy to access the website from the HOST Machine
 
 - Use Ansible to automate the application install
 - Use Ansible to automate the RH8 Machine maintenance
